@@ -1,0 +1,146 @@
+{% extends 'landing/base.html' %}
+
+{% block title %}{{ settings.company_name }} — {{ settings.hero_title }}{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero text-white text-center py-5">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-3">{{ settings.hero_title }}</h1>
+        <p class="lead mb-4">{{ settings.hero_subtitle }}</p>
+        <a href="#contact" class="btn btn-warning btn-lg fw-bold px-4">
+            <i class="bi bi-telephone-outbound"></i> Оставить заявку
+        </a>
+    </div>
+</section>
+
+<!-- УСЛУГИ -->
+<section id="services" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Наши услуги</h2>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 service-card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-3">
+                            {% if service.image %}
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                            {% else %}
+                                <div class="display-4">{{ service.icon }}</div>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title fw-bold">{{ service.title }}</h5>
+                        <p class="card-text text-muted">{{ service.description }}</p>
+                        {% if service.price %}
+                        <div class="fs-4 fw-bold text-primary mt-3">от {{ service.price|floatformat:0 }} ₽</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center text-muted">
+                <p>Услуги пока не добавлены. Зайдите в админку и добавьте.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ПРИМЕРЫ РАБОТ -->
+{% if works %}
+<section id="works" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Примеры работ</h2>
+        <div class="row g-4">
+            {% for work in works %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="{{ work.image.url }}" class="card-img-top work-img" alt="{{ work.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ work.title }}</h5>
+                        {% if work.description %}
+                        <p class="card-text text-muted small mb-0">{{ work.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ОТЗЫВЫ -->
+{% if reviews %}
+<section id="reviews" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Отзывы клиентов</h2>
+        <div class="row g-4">
+            {% for review in reviews %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="text-warning mb-2">
+                            {% for _ in "12345"|make_list %}
+                                {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="card-text">{{ review.text }}</p>
+                        <div class="fw-bold mt-3">{{ review.name }}</div>
+                        {% if review.car %}<div class="text-muted small">{{ review.car }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ФОРМА -->
+<section id="contact" class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <h2 class="text-center mb-4 fw-bold">Оставьте заявку</h2>
+                <p class="text-center mb-4">Перезвоним в течение 15 минут, подберём сигнализацию под ваш бюджет</p>
+
+                <form method="post" class="bg-white text-dark rounded p-4 shadow">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">{{ form.name.label }}</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<div class="text-danger small">{{ form.name.errors }}</div>{% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">{{ form.phone.label }}</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}<div class="text-danger small">{{ form.phone.errors }}</div>{% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">{{ form.message.label }}</label>
+                        {{ form.message }}
+                    </div>
+
+                    <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold">
+                        Отправить заявку
+                    </button>
+                    <p class="text-muted small text-center mt-3 mb-0">
+                        Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

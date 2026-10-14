@@ -2,7 +2,7 @@ meta:
   environment: python
   toolchain:
     name: pip
-    version: 3.10 # Или твоя версия Python
+    version: 3.12 # Или твоя версия Python
 
 build:
   requirementsPath: requirements.txt

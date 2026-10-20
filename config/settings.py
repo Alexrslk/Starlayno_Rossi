@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-5q%-*3=&74_g+hw6%dqg1rumt$y#tn%6%9!ic0(k6i4%c2j2w^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'starlayno-rossi.layero.app',
+    'https://starlayno-rossi-main.layero.app',
+    'starlayno-rossi.layero.dev',
+    'localhost',
+    '127.0.0.1',
+]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://starlayno-rossi.layero.app',

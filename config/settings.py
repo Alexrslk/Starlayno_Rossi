@@ -135,7 +135,7 @@ STORAGES = {
 }
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/data/media'  # ← абсолютный путь, не BASE_DIR
+MEDIA_ROOT = '/data/media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGGING = {

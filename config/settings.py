@@ -27,11 +27,17 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'starlayno-rossi.layero.app',
+    'starlayno-rossi-main.layero.app',  # ← добавили новый домен
     'starlayno-rossi.layero.dev',
     'localhost',
     '127.0.0.1',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://starlayno-rossi.layero.app',
+    'https://starlayno-rossi-main.layero.app',  # ← добавили новый домен
+    'https://starlayno-rossi.layero.dev',
+]
 
 # Application definition
 

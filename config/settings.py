@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-5q%-*3=&74_g+hw6%dqg1rumt$y#tn%6%9!ic0(k6i4%c2j2w^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+AALLOWED_HOSTS = [
+    'starlayno-rossi.layero.app',
+    'starlayno-rossi.layero.dev',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -113,7 +118,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Email

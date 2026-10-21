@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Service, Review, WorkExample, SiteSettings
 from .forms import ContactRequestForm
+from django.core.management import call_command
+
+def index(request):
+    call_command('migrate', interactive=False)  # миграция
 
 
 def index(request):

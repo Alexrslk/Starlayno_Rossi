@@ -1,0 +1,71 @@
+.hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff10'/%3E%3C/svg%3E");
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.service-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Иконки услуг */
+.service-icon {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-icon img {
+    max-height: 90px;
+    max-width: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.service-icon .display-4 {
+    line-height: 1;
+    margin: 0;
+}
+
+.work-img {
+    height: 220px;
+    object-fit: cover;
+}
+
+section {
+    scroll-margin-top: 70px;
+}
+
+.form-control {
+    border-radius: 6px;
+    padding: 0.65rem 0.9rem;
+}
+
+.btn {
+    border-radius: 6px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
